@@ -1,8 +1,10 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
 
         System.out.print("Введіть кількість рядків: ");
         int rows = scanner.nextInt();
@@ -11,15 +13,21 @@ public class Main {
 
         int[][] matrix = new int[rows][cols];
 
-        System.out.println("Введіть елементи масиву:");
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                matrix[i][j] = scanner.nextInt();
+                matrix[i][j] = random.nextInt(101) - 50;
             }
         }
 
-        int[] minInColumns = new int[cols];
+        System.out.println("\nПочатковий масив:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.printf("%4d", matrix[i][j]);
+            }
+            System.out.println();
+        }
 
+        int[] minInColumns = new int[cols];
         for (int j = 0; j < cols; j++) {
             int min = matrix[0][j];
             for (int i = 1; i < rows; i++) {
@@ -32,7 +40,7 @@ public class Main {
 
         System.out.println("\nНайменші елементи кожного стовпця:");
         for (int value : minInColumns) {
-            System.out.print(value + " ");
+            System.out.printf("%4d", value);
         }
     }
 }
